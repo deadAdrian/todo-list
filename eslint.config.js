@@ -5,7 +5,19 @@ import { tanstackConfig } from '@tanstack/eslint-config'
 export default [
   ...tanstackConfig,
   {
+    files: ['**/*.{js,jsx,ts,tsx}'],
     rules: {
+      'no-trailing-spaces': 'warn',
+      '@stylistic/no-trailing-spaces': 'warn',
+      'max-len': [
+        'warn',
+        {
+          code: 120,
+          ignoreUrls: true,
+          ignoreStrings: true,
+          ignoreTemplateLiterals: true,
+        },
+      ],
       'import/no-cycle': 'off',
       'import/order': 'off',
       'sort-imports': 'off',
@@ -15,6 +27,6 @@ export default [
     },
   },
   {
-    ignores: ['eslint.config.js', 'prettier.config.js'],
+    ignores: ['eslint.config.js', 'prettier.config.js', '.output/**'],
   },
 ]

@@ -30,25 +30,17 @@ export function ThemeProvider({
   })
 
   useEffect(() => {
-    if (typeof localStorage !== 'undefined') {
-      const stored = localStorage.getItem(storageKey) as Theme | null
-      if (stored && stored !== theme) {
-        setTheme(stored)
-      }
-    }
-  }, [storageKey])
-
-  useEffect(() => {
     if (typeof window === 'undefined') return
 
     const root = window.document.documentElement
     root.classList.remove('light', 'dark')
 
     if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-        .matches
-        ? 'dark'
-        : 'light'
+      const systemTheme =
+        typeof window.matchMedia === 'function' &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light'
       root.classList.add(systemTheme)
       return
     }
@@ -67,6 +59,7 @@ export function ThemeProvider({
     toggleTheme: () => {
       const isSystemDark =
         typeof window !== 'undefined' &&
+        typeof window.matchMedia === 'function' &&
         window.matchMedia('(prefers-color-scheme: dark)').matches
 
       const currentEffective =

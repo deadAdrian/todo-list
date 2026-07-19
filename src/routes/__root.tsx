@@ -36,7 +36,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="min-h-screen bg-background text-foreground transition-colors duration-200">
-        <ThemeProvider defaultTheme="system">
+        <ThemeProvider>
           {children}
           <TanStackDevtools
             config={{

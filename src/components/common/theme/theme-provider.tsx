@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
-type Theme = 'dark' | 'light' | 'system'
+export type Theme = 'dark' | 'light' | 'vaporwave' | 'system'
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -33,7 +33,7 @@ export function ThemeProvider({
     if (typeof window === 'undefined') return
 
     const root = window.document.documentElement
-    root.classList.remove('light', 'dark')
+    root.classList.remove('light', 'dark', 'vaporwave')
 
     if (theme === 'system') {
       const systemTheme =
@@ -57,15 +57,11 @@ export function ThemeProvider({
       setTheme(newTheme)
     },
     toggleTheme: () => {
-      const isSystemDark =
-        typeof window !== 'undefined' &&
-        typeof window.matchMedia === 'function' &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches
+      const cycle: Theme[] = ['light', 'dark', 'vaporwave']
+      const currentIndex = cycle.indexOf(theme)
+      const nextTheme =
+        currentIndex === -1 ? 'light' : cycle[(currentIndex + 1) % cycle.length]
 
-      const currentEffective =
-        theme === 'system' ? (isSystemDark ? 'dark' : 'light') : theme
-
-      const nextTheme = currentEffective === 'dark' ? 'light' : 'dark'
       if (typeof localStorage !== 'undefined') {
         localStorage.setItem(storageKey, nextTheme)
       }

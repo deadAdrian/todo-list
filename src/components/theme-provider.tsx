@@ -30,15 +30,6 @@ export function ThemeProvider({
   })
 
   useEffect(() => {
-    if (typeof localStorage !== 'undefined') {
-      const stored = localStorage.getItem(storageKey) as Theme | null
-      if (stored && stored !== theme) {
-        setTheme(stored)
-      }
-    }
-  }, [storageKey])
-
-  useEffect(() => {
     if (typeof window === 'undefined') return
 
     const root = window.document.documentElement

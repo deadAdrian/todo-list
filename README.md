@@ -11,7 +11,7 @@ To run this frontend application in full integration with the **.NET 9 API Backe
 ### 1. Prerequisites
 - **Node.js**: v20+ 
 - **npm** or **pnpm**
-- **Backend API**: running at `http://localhost:8080` or `http://localhost:5143` (see [Backend Instructions](#-running-in-conjunction-with-the-backend))
+- **Backend API**: running at `http://localhost:8080` (see [Backend Instructions](#-running-in-conjunction-with-the-backend))
 
 ---
 
@@ -22,8 +22,6 @@ Create or update the `.env` file in the root of the project:
 ```env
 VITE_API_BASE_URL=http://localhost:8080/api
 ```
-
-*(If running the backend via `dotnet run` on port 5143, set `VITE_API_BASE_URL=http://localhost:5143/api`)*.
 
 ---
 

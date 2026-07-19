@@ -12,5 +12,8 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
+  },
+  "json.schemaDownload.trustedDomains": {
+    "https://ui.shadcn.com/schema.json": true
   }
 }
